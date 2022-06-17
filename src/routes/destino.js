@@ -1,11 +1,13 @@
 const {Router} = require('express');
 const router = Router();
 
-const {getDestinos,getDestinoById}=require('../controllers/destino.controller')
+const {getDestinations,getDestinyById,createDestiny,deleteDestiny,updateDestiny}=require('../controllers/destino.controller')
 
 
 
-router.get('/destinos', getDestinos);
-router.get('/destino/:id',getDestinoById);
-
+router.get('/Destinations', getDestinations);
+router.get('/destiny/:id',getDestinyById);
+router.post('/Destinations',createDestiny);
+router.delete('/destiny/:id', deleteDestiny);
+router.put('/Destinations', updateDestiny);
 module.exports = router;
