@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const router = Router();
 
-const {getRoles,getRoleById,updateRole}=require('../controllers/rol.controller')
+const {getRoles,getRoleById,updateRole}=require('../controllers/role.controller')
 
 
 

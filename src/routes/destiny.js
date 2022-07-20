@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const router = Router();
 
-const {getDestinations,getDestinyById,createDestiny,deleteDestiny,updateDestiny}=require('../controllers/destino.controller')
+const {getDestinations,getDestinyById,createDestiny,deleteDestiny,updateDestiny}=require('../controllers/destiny.controller')
 
 
 

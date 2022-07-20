@@ -24,7 +24,6 @@ const createDestiny = async(req, res)=>{
   const response = await pool.query('INSERT INTO destino (nombre,idioma,id,nombre_pais,activo) VALUES($1,$2,$3,$4,$5)',[nombre,idioma,id,nombre_pais,activo])
 
   console.log(response);
-  //res.send('user created');
   res.json({
       message: 'User Added Succesfully' ,
       body:{

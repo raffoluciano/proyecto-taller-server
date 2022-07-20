@@ -3,7 +3,7 @@ const config = {
         host:'localhost',
         user: 'postgres',
         password: '',
-        database: 'TP_Final_Taller_2.5',
+        database: 'TP_Final_Taller_2.6',
         port:'5432'
     }
 }

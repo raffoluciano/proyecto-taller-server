@@ -17,7 +17,6 @@ const getRoles = async (req, res)=> {
 
 // el crar rol no es necesario ya que se crea cuando se crea el usuario
 
-//pasa lo mismo con el delete rol
 
 const updateRole =async (req,res) =>{
     const{nombre,dni_usuario,activo} = req.body;
