@@ -23,7 +23,6 @@ const createHotel = async(req, res)=>{
   const response = await pool.query('INSERT INTO usuario (nombre,direccion,telefono,valoracion,localidad,web, activo) VALUES($1,$2,$3,$4,$5,$6)',[nombre,direccion,telefono,valoracion,localidad,web, activo])
 
   console.log(response);
-  //res.send('user created');
   res.json({
       message: 'Hotel Added Succesfully' ,
       body:{

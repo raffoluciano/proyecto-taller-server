@@ -7,7 +7,7 @@ const {getExcursion,getExcursionById, createExcursion, deleteExcursion, updateEx
 
 router.get('/excursion', getExcursion);
 router.get('/excursion/:id',getExcursionById);
-router.post('/exvursion', createExcursion);
+router.post('/excursion', createExcursion);
 router.delete('/excursion/:id', deleteExcursion);
 router.put('/excursion/:id', updateExcursion);
 

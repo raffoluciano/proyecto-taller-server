@@ -15,6 +15,7 @@ const getDestinyById = async(req,res)=> {
     const response = await pool.query('SELECT * FROM destino WHERE id = $1', [id])
     res.json(response.rows);
 };
+
 //Al agregar destino agregar un pais que ya existe
 const createDestiny = async(req, res)=>{
   console.log('pepe');

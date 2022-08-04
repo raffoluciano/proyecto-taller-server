@@ -15,7 +15,6 @@ const getPackageById = async(req, res) => {
     res.json(response.rows);
 };
 
-//probado y anda
 const createPackage = async(req, res) => {
     console.log(req.body);
     const activo = true;
@@ -31,9 +30,7 @@ const createPackage = async(req, res) => {
   } 
 })};
 
-//probado y anda
 const deletePackage = async(req, res) => {
-    //agregar para que no permita eliminar si el paquete ya esta desactivado
     const id = req.params.id;
     console.log('id', id);
     const response = await pool.query('update paquete set activo = false where id = $1', [id])
@@ -44,7 +41,6 @@ const deletePackage = async(req, res) => {
 }; 
 
 
-//probado y anda
 const updatePackage = async(req, res) => {
     const {id, nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo} = req.body;
     console.log('id', id);
@@ -55,7 +51,7 @@ const updatePackage = async(req, res) => {
 };
 
 //se llama en el cliente cuando se cra el paquete y se le asigna elel transporte 
-const createTransportePorPaquete = async(req, res) => {
+const createTransportxpackage = async(req, res) => {
     const activo = true;
     const {idTransporte,idPaquete} = req.body;
     const response = await pool.query('insert into transporte_por_paquete (id_paquete, id_transporte,activo) values ($1,$2,$3)',
@@ -69,7 +65,7 @@ const createTransportePorPaquete = async(req, res) => {
   } 
 })};
 
-const createDestinoPorPaquete = async(req, res) => {
+const createDestinyxpackage = async(req, res) => {
     const activo = true;
     const {idDestino,idPaquete} = req.body;
     const response = await pool.query('insert into destino_por_paquete (id_paquete, id_destino,activo) values ($1,$2,$3)',
@@ -83,7 +79,7 @@ const createDestinoPorPaquete = async(req, res) => {
   } 
 })};
 
-const createExcursionPorPaquete = async(req, res) => {
+const createExcursionxpackage = async(req, res) => {
     const activo = true;
     const {idExcursion,idPaquete} = req.body;
     const response = await pool.query('insert into excursion_por_paquete (id_paquete, id_excursion,activo) values ($1,$2,$3)',
@@ -97,7 +93,7 @@ const createExcursionPorPaquete = async(req, res) => {
   } 
 })};
 
-const createHotelPorPaquete = async(req, res) => {
+const createHotelxpackage = async(req, res) => {
     const activo = true;
     const {idHotel,idPaquete} = req.body;
     const response = await pool.query('insert into hotel_por_paquete (id_paquete, id_hotel,activo) values ($1,$2,$3)',
@@ -111,7 +107,7 @@ const createHotelPorPaquete = async(req, res) => {
   } 
 })};
 
-const createLugarPorExcursion = async(req, res) => {
+const createPlacexexcursion = async(req, res) => {
     const activo = true;
     const {idExcursion,idLugar} = req.body;
     const response = await pool.query('insert into lugar_por_excursion (id_excursion, id_lugar,activo) values ($1,$2,$3)',
@@ -133,9 +129,9 @@ module.exports = {
     createPackage,
     deletePackage,
     updatePackage,
-    createTransportePorPaquete,
-    createDestinoPorPaquete,
-    createExcursionPorPaquete,
-    createHotelPorPaquete,
-    createLugarPorExcursion
+    createTransportxpackage,
+    createDestinyxpackage,
+    createExcursionxpackage,
+    createHotelxpackage,
+    createPlacexexcursion
 };

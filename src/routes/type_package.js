@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const router = Router();
 
-const {getType_paq, getType_paqById}=require('../controllers/type_paq.controller')
+const {getType_paq, getType_paqById}=require('../controllers/type_pak.controller')
 
 
 
