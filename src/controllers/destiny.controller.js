@@ -26,7 +26,7 @@ const createDestiny = async(req, res)=>{
 
   console.log(response);
   res.json({
-      message: 'User Added Succesfully' ,
+      message: 'Destiny Added Succesfully' ,
       body:{
       user:{nombre,idioma,id,nombre_pais,activo}
   } 
@@ -38,7 +38,7 @@ const deleteDestiny =async (req,res) =>{
   console.log('id',id)
   const response = await pool.query('UPDATE destino SET activo = false WHERE id =$1',[id])   
   console.log(response);
-  res.json(`User ${id} deleted successfully`);
+  res.json(`Destiny ${id} deleted successfully`);
 };
 
 const updateDestiny =async (req,res) =>{
@@ -46,7 +46,7 @@ const updateDestiny =async (req,res) =>{
   console.log('id',id)
   const response = await pool.query('UPDATE destino SET nombre = $1, idioma = $2, nombre_pais = $4, activo = $5   WHERE id =$3',[nombre,idioma,id,nombre_pais,activo])       
   console.log(response);
-  res.json(`User ${id} updated successfully`);
+  res.json(`Destiny ${id} updated successfully`);
 };
 
 

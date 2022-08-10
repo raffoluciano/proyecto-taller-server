@@ -23,7 +23,7 @@ const updateRole =async (req,res) =>{
     console.log('id',dni_usuario)
     const response = await pool.query('UPDATE rol SET nombre = $1, activo = $3   WHERE dni_usuario =$2',[nombre,dni_usuario,activo])       
     console.log(response);
-    res.json(`User ${dni_usuario} updated successfully`);
+    res.json(`Role ${dni_usuario} updated successfully`);
   };
 
 module.exports = {

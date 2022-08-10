@@ -16,7 +16,7 @@ const getType_transportById = async(req,res)=> {
     res.json(response.rows);
 };
 
-const createType_transportById = async(req, res)=>{
+const createType_transport = async(req, res)=>{
     console.log(req.body);
     const activo = true;
     const{id_transporte,nombre} = req.body;
@@ -24,26 +24,26 @@ const createType_transportById = async(req, res)=>{
   
     console.log(response);
     res.json({
-        message: 'Hotel Added Succesfully' ,
+        message: 'Type_transport Added Succesfully' ,
         body:{
         hotel:{id_transporte,nombre, activo}
     } 
   })
   };
 
-  const deleteType_transportById= async (req, res) => {
+  const deleteType_transport= async (req, res) => {
     const id = req.params.id
     console.log('id', id);
     const response = await pool.query('update tipo_transporte set activo = false where id = $1', [id])
     console.log(response);
-    res.json(`Location ${id} deleted successfully`); 
+    res.json(`Type_transport ${id} deleted successfully`); 
 };
 
 
 module.exports = {
     getType_transport,
     getType_transportById,
-    createType_transportById,
-    deleteType_transportById
+    createType_transport,
+    deleteType_transport
 
 }

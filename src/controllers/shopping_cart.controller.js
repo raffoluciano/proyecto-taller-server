@@ -22,7 +22,7 @@ const createShopping_cart = async(req, res)=>{
   
     console.log(response);
     res.json({
-        message: 'User Added Succesfully' ,
+        message: 'Shopping_cart Added Succesfully' ,
         body:{
         user:{id,fecha,estado,activo}
     } 
@@ -34,7 +34,7 @@ const createShopping_cart = async(req, res)=>{
     console.log('id',id)
     const response = await pool.query('UPDATE carrito SET activo = false WHERE id =$1',[id]);
     console.log(response);
-    res.json(`carrito ${id} deleted successfully`);
+    res.json(`Shopping_cart ${id} deleted successfully`);
   };
   
 module.exports = {

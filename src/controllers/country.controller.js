@@ -17,7 +17,7 @@ const createCountry = async(req, res)=>{
 
   console.log(response);
   res.json({
-      message: 'Pais Added Succesfully' ,
+      message: 'Country Added Succesfully' ,
       body:{
       pais:{nombre,activo}
   } 
@@ -29,7 +29,7 @@ const deleteCountry =async (req,res) =>{
   console.log('nombre',nombre)
   const response = await pool.query('UPDATE pais SET activo = false WHERE nombre =$1',[nombre]);
   console.log(response);
-  res.json(`Pais ${nombre} deleted successfully`);
+  res.json(`Country ${nombre} deleted successfully`);
 };
 
 

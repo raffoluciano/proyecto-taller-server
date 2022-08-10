@@ -59,7 +59,7 @@ const createTransportxpackage = async(req, res) => {
     console.log(response);
  
     res.json({
-      message: 'Package Added Succesfully' ,
+      message: 'Transportxpackage Added Succesfully' ,
       body:{
       package: {idTransporte,idPaquete}
   } 
@@ -73,7 +73,7 @@ const createDestinyxpackage = async(req, res) => {
     console.log(response);
  
     res.json({
-      message: 'Package Added Succesfully' ,
+      message: 'Destinyxpackage Added Succesfully' ,
       body:{
       package: {idDestino,idPaquete}
   } 
@@ -87,7 +87,7 @@ const createExcursionxpackage = async(req, res) => {
     console.log(response);
  
     res.json({
-      message: 'Package Added Succesfully' ,
+      message: 'Excursionxpackage Added Succesfully' ,
       body:{
       package: {idExcursion,idPaquete}
   } 
@@ -101,7 +101,7 @@ const createHotelxpackage = async(req, res) => {
     console.log(response);
  
     res.json({
-      message: 'Package Added Succesfully' ,
+      message: 'Hotelxpackage Added Succesfully' ,
       body:{
       package: {idHotel,idPaquete}
   } 
@@ -115,7 +115,7 @@ const createPlacexexcursion = async(req, res) => {
     console.log(response);
  
     res.json({
-      message: 'Package Added Succesfully' ,
+      message: 'Placexexcursion Added Succesfully' ,
       body:{
       package: {idExcursion,idLugar}
   } 

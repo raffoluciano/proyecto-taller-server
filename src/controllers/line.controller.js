@@ -16,7 +16,7 @@ const createLine= async(req, res)=>{
   
     console.log(response);
     res.json({
-        message: 'User Added Succesfully' ,
+        message: 'Line Added Succesfully' ,
         body:{
         user:{cantidad,id_carrito,activo}
     } 
@@ -28,7 +28,7 @@ const createLine= async(req, res)=>{
     console.log('id', id);
     const response = await pool.query('update linea set activo = false where id = $1', [id])
     console.log(response);
-    res.json(`Location ${id} deleted successfully`); 
+    res.json(`Line ${id} deleted successfully`); 
 };
 
 module.exports = {
