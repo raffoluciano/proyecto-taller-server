@@ -5,9 +5,9 @@ const {getDestinations,getDestinyById,createDestiny,deleteDestiny,updateDestiny}
 
 
 
-router.get('/Destinations', getDestinations);
+router.get('/destiny', getDestinations);
 router.get('/destiny/:id',getDestinyById);
-router.post('/Destinations',createDestiny);
+router.post('/destiny',createDestiny);
 router.delete('/destiny/:id', deleteDestiny);
-router.put('/Destinations', updateDestiny);
+router.put('/destiny', updateDestiny);
 module.exports = router;

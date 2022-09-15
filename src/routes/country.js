@@ -5,8 +5,8 @@ const {getCountry, createCountry, deleteCountry}=require('../controllers/country
 
 
 
-router.get('/Country', getCountry);
-router.post('/Country', createCountry);
-router.delete('/Country/:nombre', deleteCountry);
+router.get('/country', getCountry);
+router.post('/country', createCountry);
+router.delete('/country/:nombre', deleteCountry);
 
 module.exports = router;
