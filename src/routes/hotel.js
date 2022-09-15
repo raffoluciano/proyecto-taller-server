@@ -6,7 +6,7 @@ const {getHotel,getHotelByLocalidad, deleteHotel, createHotel, updateHotel}=requ
 
 
 router.get('/hotel', getHotel);
-router.get('/hotel/:localidad',getHotelByLocalidad);
+router.get('/:localidad',getHotelByLocalidad);
 router.post('/hotel', createHotel);
 router.delete('/hotel/:nombre', deleteHotel);
 router.put('/hotel', updateHotel);
