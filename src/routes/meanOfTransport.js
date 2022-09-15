@@ -3,7 +3,7 @@ const { getMeanOfTransport, getMeanOfTransportById, createMeanOfTransportById, d
 const router = Router()
 
 router.get('/meanOfTransport', getMeanOfTransport)
-router.get('/meanOfTransport/:id', getMeanOfTransportById)
+router.get('/:id', getMeanOfTransportById)
 router.post('/meanOfTransport', createMeanOfTransportById)
 router.delete('/meanOfTransport/:id',deleteMeanOfTransportById)
 router.put('/meanOfTransport', updateMeanOfTransport)
