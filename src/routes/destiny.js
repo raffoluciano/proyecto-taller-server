@@ -6,7 +6,7 @@ const {getDestinations,getDestinyById,createDestiny,deleteDestiny,updateDestiny}
 
 
 router.get('/destiny', getDestinations);
-router.get('/destiny/:id',getDestinyById);
+router.get('/:id',getDestinyById);
 router.post('/destiny',createDestiny);
 router.delete('/destiny/:id', deleteDestiny);
 router.put('/destiny', updateDestiny);

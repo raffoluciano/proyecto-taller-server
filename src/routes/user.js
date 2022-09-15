@@ -5,7 +5,7 @@ const {getUsers,createUser,getUsersById,deleteUser,updateUser}=require('../contr
 
 //user routes
 router.get('/users', getUsers);
-router.get('/users/:id', getUsersById);
+router.get('/:id', getUsersById);
 router.post('/users',createUser);
 router.delete('/users/:id', deleteUser);
 router.put('/users', updateUser);
