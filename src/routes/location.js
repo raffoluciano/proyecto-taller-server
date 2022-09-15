@@ -3,7 +3,7 @@ const { getLocation, getLocationById, createLocation, deleteLocation, updateLoca
 const router = Router()
 
 router.get('/location', getLocation);
-router.get('/location/:id', getLocationById);
+router.get('/:id', getLocationById);
 router.post('/location', createLocation);
 router.delete('/location/:id', deleteLocation);
 router.put('/location', updateLocation)
