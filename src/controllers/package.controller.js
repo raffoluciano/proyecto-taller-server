@@ -19,14 +19,16 @@ const createPackage = async(req, res) => {
     console.log(req.body);
     const activo = true;
     const {nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion} = req.body;
-    const response = await pool.query('insert into paquete (nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo) values ($1,$2,$3,$4,$5,$6,$7,$8,$9)',
+    const response = await pool.query('insert into paquete (nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo) values ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id',
     [nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo])
-    console.log(response);
+
+    const { id } = response.rows[0]
+    console.log('verrr',response.rows[0]);
  
     res.json({
       message: 'Package Added Succesfully' ,
       body:{
-      package: {nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo}
+      package: {id,nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo}
   } 
 })};
 
@@ -53,71 +55,71 @@ const updatePackage = async(req, res) => {
 //se llama en el cliente cuando se cra el paquete y se le asigna elel transporte 
 const createTransportxpackage = async(req, res) => {
     const activo = true;
-    const {idTransporte,idPaquete} = req.body;
-    const response = await pool.query('insert into transporte_por_paquete (id_paquete, id_transporte,activo) values ($1,$2,$3)',
-    [idPaquete,idTransporte, activo])
+    const {id_transporte,id_paquete} = req.body;
+    console.log('request',req.body);
+    const response = await pool.query('insert into transporte_por_paquete (id_paquete, id_transporte,activo) values ($1,$2,$3)', [id_paquete,id_transporte, activo])
     console.log(response);
  
     res.json({
       message: 'Transportxpackage Added Succesfully' ,
       body:{
-      package: {idTransporte,idPaquete}
+      package: {id_transporte,id_paquete}
   } 
 })};
 
 const createDestinyxpackage = async(req, res) => {
     const activo = true;
-    const {idDestino,idPaquete} = req.body;
+    const {id_destino,id_paquete} = req.body;
     const response = await pool.query('insert into destino_por_paquete (id_paquete, id_destino,activo) values ($1,$2,$3)',
-    [idPaquete,idDestino, activo])
+    [id_paquete,id_destino, activo])
     console.log(response);
  
     res.json({
       message: 'Destinyxpackage Added Succesfully' ,
       body:{
-      package: {idDestino,idPaquete}
+      package: {id_destino,id_paquete}
   } 
 })};
 
 const createExcursionxpackage = async(req, res) => {
     const activo = true;
-    const {idExcursion,idPaquete} = req.body;
+    const {id_excursion,id_paquete} = req.body;
     const response = await pool.query('insert into excursion_por_paquete (id_paquete, id_excursion,activo) values ($1,$2,$3)',
-    [idPaquete,idExcursion, activo])
+    [id_paquete,id_excursion, activo])
     console.log(response);
  
     res.json({
       message: 'Excursionxpackage Added Succesfully' ,
       body:{
-      package: {idExcursion,idPaquete}
+      package: {id_excursion,id_paquete}
   } 
 })};
 
 const createHotelxpackage = async(req, res) => {
     const activo = true;
-    const {idHotel,idPaquete} = req.body;
+    const {id_hotel,id_paquete} = req.body;
     const response = await pool.query('insert into hotel_por_paquete (id_paquete, id_hotel,activo) values ($1,$2,$3)',
-    [idPaquete,idHotel, activo])
+    [id_paquete,id_hotel, activo])
     console.log(response);
  
     res.json({
       message: 'Hotelxpackage Added Succesfully' ,
       body:{
-      package: {idHotel,idPaquete}
+      package: {id_hotel,id_paquete}
   } 
 })};
 
 const createPlacexexcursion = async(req, res) => {
     const activo = true;
-    const {idExcursion,idLugar} = req.body;
+    const {id_excursion,id_lugar} = req.body;
     const response = await pool.query('insert into lugar_por_excursion (id_excursion, id_lugar,activo) values ($1,$2,$3)',
-    [idExcursion,idLugar, activo])
+    [id_excursion,id_lugar, activo])
     console.log(response);
  
     res.json({
       message: 'Placexexcursion Added Succesfully' ,
       body:{
-      package: {idExcursion,idLugar}
+      package: {id_excursion,id_lugar}
   } 
 })};
 

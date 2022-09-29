@@ -22,12 +22,14 @@ const createLocation = async(req, res) => {
     console.log(req.body);
     const activo = true
     const {nombre} = req.body
-    const response = await pool.query('insert into lugar (nombre, activo) values ($1, $2)', [nombre, activo])
-    console.log(response);
+    const response = await pool.query('insert into lugar (nombre, activo) values ($1, $2) RETURNING id', [nombre, activo])
+
+    const { id } = response.rows[0]
+    console.log('verrr',response.rows[0]);
     res.json({
         message: 'Location Added Succesfully' ,
         body:{
-        location:{nombre, activo}}
+        location:{id, nombre, activo}}
     })
 };
 

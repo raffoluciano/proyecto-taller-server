@@ -20,7 +20,8 @@ const createType_transport = async(req, res)=>{
     console.log(req.body);
     const activo = true;
     const{id_transporte,nombre} = req.body;
-    const response = await pool.query('INSERT INTO usuario (id_transporte,nombre, activo) VALUES($1,$2,$3)',[id_transporte,nombre, activo])
+    console.log(id_transporte)
+    const response = await pool.query('INSERT INTO tipo_transporte (id_transporte,nombre, activo) VALUES($1,$2,$3)',[id_transporte,nombre, activo])
   
     console.log(response);
     res.json({

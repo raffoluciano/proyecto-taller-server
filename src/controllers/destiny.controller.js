@@ -18,17 +18,17 @@ const getDestinyById = async(req,res)=> {
 
 //Al agregar destino agregar un pais que ya existe
 const createDestiny = async(req, res)=>{
-  console.log('pepe');
   console.log(req.body);
   const activo = true;
-  const{nombre,idioma,id,nombre_pais} = req.body;
-  const response = await pool.query('INSERT INTO destino (nombre,idioma,id,nombre_pais,activo) VALUES($1,$2,$3,$4,$5)',[nombre,idioma,id,nombre_pais,activo])
+  const{nombre,idioma,id_pais} = req.body;
+  const response = await pool.query('INSERT INTO destino (nombre,idioma,id_pais,activo) VALUES($1,$2,$3,$4) RETURNING id',[nombre,idioma,id_pais,activo])
 
-  console.log(response);
+  const { id } = response.rows[0]
+  console.log('verrr',response.rows[0]);
   res.json({
       message: 'Destiny Added Succesfully' ,
       body:{
-      user:{nombre,idioma,id,nombre_pais,activo}
+      user:{nombre,idioma,id,id_pais,activo}
   } 
 })
 };

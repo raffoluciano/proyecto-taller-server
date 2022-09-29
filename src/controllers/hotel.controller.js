@@ -20,13 +20,14 @@ const createHotel = async(req, res)=>{
   console.log(req.body);
   const activo = true;
   const{nombre,direccion,telefono,valoracion,localidad,web} = req.body;
-  const response = await pool.query('INSERT INTO usuario (nombre,direccion,telefono,valoracion,localidad,web, activo) VALUES($1,$2,$3,$4,$5,$6)',[nombre,direccion,telefono,valoracion,localidad,web, activo])
+  const response = await pool.query('INSERT INTO hotel (nombre,direccion,telefono,valoracion,localidad,web, activo) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING id',[nombre,direccion,telefono,valoracion,localidad,web, activo])
 
-  console.log(response);
+  const { id } = response.rows[0]
+  console.log('verrr',response.rows[0]);
   res.json({
       message: 'Hotel Added Succesfully' ,
       body:{
-      hotel:{nombre,direccion,telefono,valoracion,localidad,web,activo}
+      hotel:{id,nombre,direccion,telefono,valoracion,localidad,web,activo}
   } 
 })
 };
@@ -41,7 +42,7 @@ const deleteHotel =async (req,res) =>{
 const updateHotel =async (req,res) =>{
   const{nombre,direccion,telefono,valoracion,localidad,web} = req.body;
   console.log('nombre',nombre)
-  const response = await pool.query('UPDATE usuario SET direccion = $2, telefono = $3, valorecion = $4, localidad = $5, web = $6  WHERE nombre =$2',[nombre,direccion,telefono,valoracion,localidad,web])       
+  const response = await pool.query('UPDATE hotel SET direccion = $2, telefono = $3, valorecion = $4, localidad = $5, web = $6  WHERE nombre =$2',[nombre,direccion,telefono,valoracion,localidad,web])       
   console.log(response);
   res.json(`Hotel ${nombre} updated successfully`);
 };

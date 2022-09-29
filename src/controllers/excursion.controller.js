@@ -20,14 +20,15 @@ const getExcursionById = async(req,res)=> {
 const createExcursion = async(req, res)=>{
   console.log(req.body);
   const activo = true;
-  const{id,nombre,duracion ,descripciom,precio} = req.body;
-  const response = await pool.query('INSERT INTO usuario (id,nombre,duracion,descripciom,precio,activo) VALUES($1,$2,$3,$4,$5,$6)',[id,nombre,duracion,descripciom,precio,activo])
+  const{nombre,duracion ,descripcion,precio} = req.body;
+  const response = await pool.query('INSERT INTO excursion (nombre,duracion,descripcion,precio,activo) VALUES($1,$2,$3,$4,$5) RETURNING id',[nombre,duracion,descripcion,precio,activo])
 
-  console.log(response);
+  const { id } = response.rows[0]
+  console.log('verrr',response.rows[0]);
   res.json({
       message: 'Excursion Added Succesfully' ,
       body:{
-      hotel:{id,nombre,duracion,descripciom,precio,activo}
+      hotel:{id,nombre,duracion,descripcion,precio,activo}
   } 
 })
 };
@@ -35,7 +36,7 @@ const createExcursion = async(req, res)=>{
 const deleteExcursion =async (req,res) =>{
   const id= req.params.id; 
   console.log('id',id)
-  const response = await pool.query('UPDATE hotel SET activo = false WHERE id =$1',[id]);
+  const response = await pool.query('UPDATE excursion SET activo = false WHERE id =$1',[id]);
   console.log(response);
   res.json(`Excursion ${id} deleted successfully`);
 };

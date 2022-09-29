@@ -16,22 +16,24 @@ const getMeanOfTransportById = async(req, res) => {
 };
 
 //anda 
-const createMeanOfTransportById = async(req, res) => {
+const createMeanOfTransport = async(req, res) => {
     console.log(req.body);
     const activo = true
     const {capacidad, empresa, localidad} = req.body
-    const response = await pool.query('insert into transporte (capacidad, empresa, localidad, activo) values ($1,$2,$3,$4)',
+    const response = await pool.query('insert into transporte (capacidad, empresa, localidad, activo) values ($1,$2,$3,$4) RETURNING id',
     [capacidad, empresa, localidad, activo])
-    console.log(response);
+
+    const { id } = response.rows[0]
+    console.log('verrr',response.rows[0]);
     res.json({
         message: 'Mean of transport Added Succesfully' ,
         body:{
-        MeansOfTransport:{capacidad, empresa, localidad, activo}}
+        MeansOfTransport:{id, capacidad, empresa, localidad, activo}}
     })
 };
 
 //anda
-const deleteMeanOfTransportById = async (req, res) => {
+const deleteMeanOfTransport = async (req, res) => {
     const id = req.params.id;
     console.log('id', id);
     const response = await pool.query('update transporte set activo = false where id = $1', [id])
@@ -53,7 +55,7 @@ const updateMeanOfTransport = async(req, res) => {
 module.exports = {
     getMeanOfTransport,
     getMeanOfTransportById,
-    createMeanOfTransportById,
-    deleteMeanOfTransportById,
+    createMeanOfTransport,
+    deleteMeanOfTransport,
     updateMeanOfTransport
 };

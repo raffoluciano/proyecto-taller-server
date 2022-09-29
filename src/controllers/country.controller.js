@@ -12,14 +12,15 @@ const getCountry = async (req, res)=> {
 const createCountry = async(req, res)=>{
   console.log(req.body);
   const activo = true;
-  const nombre = req.body;
-  const response = await pool.query('INSERT INTO pais nombre VALUES $1',[nombre])
+  const { nombre } = req.body;
+  const response = await pool.query('INSERT INTO pais (nombre, activo) VALUES( $1, $2  ) RETURNING id',[nombre,activo])
 
-  console.log(response);
+  const { id } = response.rows[0]
+  console.log('verrr',response.rows[0]);
   res.json({
       message: 'Country Added Succesfully' ,
       body:{
-      pais:{nombre,activo}
+      pais:{id,nombre,activo}
   } 
 })
 };

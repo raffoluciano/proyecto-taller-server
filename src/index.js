@@ -16,13 +16,14 @@ const meanOfTransport = require('./routes/meanOfTransport')
 const location = require('./routes/location')
 const promotion = require('./routes/promotion')
 const shopping_cart = require('./routes/shopping_cart')
-const line = require ('./routes/line')
+const line = require('./routes/line')
+const type_transport = require('./routes/type_trasnport')
 
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 // routes
-app.use("/User",users);
+app.use("/user",users);
 app.use("/Destiny",Destinations);
 app.use("/role",roles);
 app.use("/excursion",excursion);
@@ -35,6 +36,7 @@ app.use('/location', location);
 app.use('/promotion', promotion);
 app.use('/shopping_cart', shopping_cart)
 app.use('/line', line)
+app.use('/type_transport', type_transport)
 
 app.listen(4000);
 console.log('Server on port 4000');

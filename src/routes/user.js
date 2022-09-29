@@ -4,11 +4,11 @@ const router = Router();
 const {getUsers,createUser,getUsersById,deleteUser,updateUser}=require('../controllers/user.controller')
 
 //user routes
-router.get('/users', getUsers);
+router.get('/user', getUsers);
 router.get('/:id', getUsersById);
-router.post('/users',createUser);
-router.delete('/users/:id', deleteUser);
-router.put('/users', updateUser);
+router.post('/user',createUser);
+router.delete('/user/:id', deleteUser);
+router.put('/user', updateUser);
 
 //paquetes routes
 

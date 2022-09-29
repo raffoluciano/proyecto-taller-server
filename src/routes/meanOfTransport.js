@@ -1,11 +1,11 @@
 const { Router } = require('express');
-const { getMeanOfTransport, getMeanOfTransportById, createMeanOfTransportById, deleteMeanOfTransportById, updateMeanOfTransport } = require('../controllers/meanOfTransport.controller');
+const { getMeanOfTransport, getMeanOfTransportById, createMeanOfTransport, deleteMeanOfTransport, updateMeanOfTransport } = require('../controllers/meanOfTransport.controller');
 const router = Router()
 
 router.get('/meanOfTransport', getMeanOfTransport)
 router.get('/:id', getMeanOfTransportById)
-router.post('/meanOfTransport', createMeanOfTransportById)
-router.delete('/meanOfTransport/:id',deleteMeanOfTransportById)
+router.post('/meanOfTransport', createMeanOfTransport)
+router.delete('/meanOfTransport/:id',deleteMeanOfTransport)
 router.put('/meanOfTransport', updateMeanOfTransport)
 
 module.exports = router;

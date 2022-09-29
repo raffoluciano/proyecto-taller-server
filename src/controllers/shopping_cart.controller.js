@@ -17,14 +17,15 @@ const getShopping_cart = async (req, res)=> {
 const createShopping_cart = async(req, res)=>{
     console.log(req.body);
     const activo = true;
-    const{id,fecha,estado} = req.body;
-    const response = await pool.query('INSERT INTO carrito (id,fecha,estado,activo) VALUES($1,$2,$3,$4)',[id,fecha,estado,activo])
+    const{fecha,estado} = req.body;
+    const response = await pool.query('INSERT INTO carrito (fecha,estado,activo) VALUES($1,$2,$3) RETURNING id',[fecha,estado,activo])
   
-    console.log(response);
+    const { id } = response.rows[0]
+    console.log('verrr',response.rows[0]);
     res.json({
         message: 'Shopping_cart Added Succesfully' ,
         body:{
-        user:{id,fecha,estado,activo}
+        user:{fecha,estado,activo}
     } 
   })
   };
