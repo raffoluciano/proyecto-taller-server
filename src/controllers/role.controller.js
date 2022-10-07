@@ -9,9 +9,9 @@ const getRoles = async (req, res)=> {
   }
 
   const getRoleById = async(req,res)=> {
-    const id = req.params.id;
-    console.log('id',id)
-    const response = await pool.query('SELECT * FROM rol WHERE dni_usuario = $1', [id])
+    const dni_usuario = req.params.id;
+    console.log('id',dni_usuario)
+    const response = await pool.query('SELECT * FROM rol WHERE dni_usuario = $1', [dni_usuario])
     res.json(response.rows);
 };
 
