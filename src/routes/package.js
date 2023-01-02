@@ -1,9 +1,10 @@
 const { Router } = require('express');
-const { getPackage, getPackageById, createPackage, deletePackage, updatePackage,createTransportxpackage,createDestinyxpackage, createExcursionxpackage,createHotelxpackage,createPlacexexcursion } = require('../controllers/package.controller');
+const { getPackage, getPackageById, createPackage, deletePackage, updatePackage,createTransportxpackage,createDestinyxpackage, createExcursionxpackage,createHotelxpackage,createPlacexexcursion, getPackageByDestiny } = require('../controllers/package.controller');
 const router = Router()
 
 router.get('/package', getPackage);
 router.get('/:id', getPackageById);
+router.get('/destino', getPackageByDestiny);
 router.post('/package', createPackage);
 router.delete('/package/:id', deletePackage);
 router.put('/package', updatePackage);

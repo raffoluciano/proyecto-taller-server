@@ -15,6 +15,13 @@ const getPackageById = async(req, res) => {
     res.json(response.rows);
 };
 
+const getPackageByDestiny = async(req, res) => {
+  //NO FUNCIONA
+    const nombre = 'Alaska'
+    const response = await pool.query("select p.nombre, d.nombre from destino as d join destino_por_paquete as dp on d.id=dp.id_destino join paquete as p on p.id=dp.id_paquete where d.nombre='Alaska'")
+    res.json(response.rows);
+};
+
 const createPackage = async(req, res) => {
     console.log(req.body);
     const activo = true;
@@ -128,6 +135,7 @@ const createPlacexexcursion = async(req, res) => {
 module.exports = {
     getPackage,
     getPackageById,
+    getPackageByDestiny,
     createPackage,
     deletePackage,
     updatePackage,
