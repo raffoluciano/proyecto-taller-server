@@ -16,11 +16,14 @@ const getPackageById = async(req, res) => {
 };
 
 const getPackageByDestiny = async(req, res) => {
-  //NO FUNCIONA
-    const nombre = 'Alaska'
-    const response = await pool.query("select p.nombre, d.nombre from destino as d join destino_por_paquete as dp on d.id=dp.id_destino join paquete as p on p.id=dp.id_paquete where d.nombre='Alaska'")
+    const nombre = req.params.nombre;
+    const response = await pool.query("select p.nombre as nombre, p.precio as precio, p.comienzo as comienzo, p.fin as fin, p.salida as salida, p.descripcion as descripcion, p.cupos as cupos, p.duracion as duracion from destino as d join destino_por_paquete as dp on d.id=dp.id_destino join paquete as p on p.id=dp.id_paquete where d.nombre=$1", [nombre])
     res.json(response.rows);
 };
+/*
+const getPackageByPrice = async(req, res) => {
+    const precio = 
+}*/
 
 const createPackage = async(req, res) => {
     console.log(req.body);

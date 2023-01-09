@@ -4,7 +4,7 @@ const router = Router()
 
 router.get('/package', getPackage);
 router.get('/:id', getPackageById);
-router.get('/destino', getPackageByDestiny);
+router.get('/destino/:nombre', getPackageByDestiny);
 router.post('/package', createPackage);
 router.delete('/package/:id', deletePackage);
 router.put('/package', updatePackage);
