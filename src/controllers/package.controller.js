@@ -20,10 +20,18 @@ const getPackageByDestiny = async(req, res) => {
     const response = await pool.query("select p.nombre as nombre, p.precio as precio, p.comienzo as comienzo, p.fin as fin, p.salida as salida, p.descripcion as descripcion, p.cupos as cupos, p.duracion as duracion from destino as d join destino_por_paquete as dp on d.id=dp.id_destino join paquete as p on p.id=dp.id_paquete where d.nombre=$1", [nombre])
     res.json(response.rows);
 };
-/*
+
+const getPackageByDate = async(req, res) => {
+    const date = req.params.comienzo
+    const response = await pool.query('select * from paquete where comienzo>=$1',[date])
+    res.json(response.rows)
+};
+
 const getPackageByPrice = async(req, res) => {
-    const precio = 
-}*/
+    const price = req.params.precio
+    const response = await pool.query('select * from paquete where precio<=$1', [price])
+    res.json(response.rows)    
+}
 
 const createPackage = async(req, res) => {
     console.log(req.body);
@@ -62,7 +70,7 @@ const updatePackage = async(req, res) => {
     res.json(`Package ${id} update successfully`);
 };
 
-//se llama en el cliente cuando se cra el paquete y se le asigna elel transporte 
+//se llama en el cliente cuando se crea el paquete y se le asigna el transporte 
 const createTransportxpackage = async(req, res) => {
     const activo = true;
     const {id_transporte,id_paquete} = req.body;
@@ -139,6 +147,8 @@ module.exports = {
     getPackage,
     getPackageById,
     getPackageByDestiny,
+    getPackageByDate,
+    getPackageByPrice,
     createPackage,
     deletePackage,
     updatePackage,
