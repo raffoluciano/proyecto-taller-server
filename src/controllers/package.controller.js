@@ -35,10 +35,9 @@ const getPackageByPrice = async(req, res) => {
 
 const createPackage = async(req, res) => {
     console.log(req.body);
-    const activo = true;
-    const {nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion} = req.body;
-    const response = await pool.query('insert into paquete (nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo) values ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id',
-    [nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo])
+    const {nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles} = req.body;
+    const response = await pool.query('insert into paquete (nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles, activo) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING id',
+    [nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles])
 
     const { id } = response.rows[0]
     console.log('verrr',response.rows[0]);
@@ -46,29 +45,64 @@ const createPackage = async(req, res) => {
     res.json({
       message: 'Package Added Succesfully' ,
       body:{
-      package: {id,nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo}
+      package: {id,nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles}
   } 
 })};
 
 const deletePackage = async(req, res) => {
-    const id = req.params.id;
+    const id = req.params.id
     console.log('id', id);
-    const response = await pool.query('update paquete set activo = false where id = $1', [id])
-    console.log(response);
+    const response = await pool.query('delete from paquete where id = $1', [id])
+    console.log('lo eliminado', response);
     res.json(`Package ${id} deleted successfully`);       
     
 
 }; 
 
-
+/*
 const updatePackage = async(req, res) => {
-    const {id, nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo} = req.body;
+    const id = req.params.id;
+    const { nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles } = req.body;
     console.log('id', id);
-    const response = await pool.query('update paquete set nombre = $2, precio = $3, comienzo = $4, fin = $5, salida = $6, descripcion = $7, cupos = $8, duracion = $9, activo = $10 where id = $1',
-    [id, nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo])
-    console.log(response);
-    res.json(`Package ${id} update successfully`);
+    const response = await pool.query('update paquete set nombre = $2, precio = $3, comienzo = $4, fin = $5, salida = $6, descripcion = $7, cupos = $8, duracion = $9, excursiones = $10, hoteles = $11 where id = $1', [id, nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles])
+    console.log();
+    res.json(response);
 };
+*/
+
+/*
+const updatePackage = async (req, res) => {
+                    const id = req.params.id;
+                    console.log(req.body)
+                    const { nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles } = req.body;
+                    console.log('id', id);
+                  
+                    if (!nombre || !precio || !comienzo || !fin || !salida || !descripcion || !cupos || !duracion || !excursiones || !hoteles) {
+                      res.status(400).json({ error: 'Faltan datos para actualizar el paquete' });
+                      return;
+                    }
+                    console.log(error)
+                    const response = await pool.query('update paquete set nombre = $2, precio = $3, comienzo = $4, fin = $5, salida = $6, descripcion = $7, cupos = $8, duracion = $9, excursiones = $10, hoteles = $11 where id = $1', [id, nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles])
+                    console.log();
+                    res.json(response);
+                  };
+*/
+
+const updatePackage = async (req, res) => {
+  const id = req.params.id;
+  console.log(req.body)
+  const { nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles } = req.body;
+  console.log('id', id);
+  try {
+    const response = await pool.query('UPDATE paquete SET nombre = $1, precio = $2, comienzo = $3, fin = $4, salida = $5, descripcion = $6, cupos = $7, duracion = $8, excursiones = $9, hoteles = $10 WHERE id = $11 RETURNING *', [nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles, id]);
+    console.log('Data has been updated in the database:', response.rows[0]);
+    res.json(response.rows[0]);
+  } catch (error) {
+    console.error('Error updating data in the database:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 
 //se llama en el cliente cuando se crea el paquete y se le asigna el transporte 
 const createTransportxpackage = async(req, res) => {
