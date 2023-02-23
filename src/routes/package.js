@@ -9,7 +9,7 @@ router.get('/date/:comienzo', getPackageByDate);
 router.get('/price/:precio', getPackageByPrice);
 router.post('/package', createPackage);
 router.delete('/package/:id', deletePackage);
-router.put('/package', updatePackage);
+router.put('/package/:id', updatePackage);
 router.post('/transportxpackage', createTransportxpackage);
 router.post('/destinyxpackage', createDestinyxpackage);
 router.post('/excursionxpackage', createExcursionxpackage);
