@@ -17,7 +17,7 @@ const getPackageById = async(req, res) => {
 
 const getPackageByDestiny = async(req, res) => {
     const nombre = req.params.nombre;
-    const response = await pool.query("select p.nombre as nombre, p.precio as precio, p.comienzo as comienzo, p.fin as fin, p.salida as salida, p.descripcion as descripcion, p.cupos as cupos, p.duracion as duracion from destino as d join destino_por_paquete as dp on d.id=dp.id_destino join paquete as p on p.id=dp.id_paquete where d.nombre=$1", [nombre])
+    const response = await pool.query("select p.id as id, p.nombre as nombre, p.precio as precio, p.comienzo as comienzo, p.fin as fin, p.salida as salida, p.descripcion as descripcion, p.cupos as cupos, p.duracion as duracion from destino as d join destino_por_paquete as dp on d.id=dp.id_destino join paquete as p on p.id=dp.id_paquete where d.nombre=$1", [nombre])
     res.json(response.rows);
 };
 
