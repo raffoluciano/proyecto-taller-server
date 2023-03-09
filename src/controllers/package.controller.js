@@ -5,8 +5,23 @@ const config = require('../../config')
 const pool = new Pool(config.db)
 
 const getPackage = async(req, res) => {
-    const response = await pool.query('select * from paquete')
-    res.status(200).json(response.rows);
+    const parametros = req.query;
+    console.log(req.query);
+    const cant_query_params = Array.from(Object.keys(parametros)).length
+    if (cant_query_params === 0) {
+        const response = await pool.query('select * from paquete')
+        res.status(200).json(response.rows);
+    }
+    else {
+        let base = 'select * from paquete where '
+        const listaClaveValor = Object.entries(parametros).map(([clave, valor]) => `${clave}=${valor}`)
+        const filtro = listaClaveValor.join(" AND ")
+        const consulta = base + filtro
+        console.log(consulta);
+        const response = await pool.query(consulta)
+        res.json(response.rows)
+    }
+
 };
 
 const getPackageById = async(req, res) => {
@@ -14,11 +29,23 @@ const getPackageById = async(req, res) => {
     const response = await pool.query('select * from paquete where id = $1', [id])
     res.json(response.rows);
 };
-
+/*
 const getPackageByDestiny = async(req, res) => {
-    const nombre = req.params.nombre;
-    const response = await pool.query("select p.id as id, p.nombre as nombre, p.precio as precio, p.comienzo as comienzo, p.fin as fin, p.salida as salida, p.descripcion as descripcion, p.cupos as cupos, p.duracion as duracion from destino as d join destino_por_paquete as dp on d.id=dp.id_destino join paquete as p on p.id=dp.id_paquete where d.nombre=$1", [nombre])
-    res.json(response.rows);
+    const parametros = req.query;
+    console.log(req.query);
+    const cant_query_params = Array.from(Object.keys(parametros)).length
+    if (cant_query_params === 0) {
+        const response = await pool.query('select * from paquete')
+        res.status(200).json(response.rows);
+    }
+    else {
+        let base = 'select * from paquete where '
+        const listaClaveValor = Object.entries(parametros).map(([clave, valor]) => `${clave}=${valor}`)
+        const filtro = listaClaveValor.join(" AND ")
+        const consulta = base + filtro
+        res.json([]);
+    }
+
 };
 
 const getPackageByDate = async(req, res) => {
@@ -31,7 +58,7 @@ const getPackageByPrice = async(req, res) => {
     const price = req.params.precio
     const response = await pool.query('select * from paquete where precio<=$1', [price])
     res.json(response.rows)    
-}
+}*/
 
 const createPackage = async(req, res) => {
     console.log(req.body);
@@ -180,9 +207,6 @@ const createPlacexexcursion = async(req, res) => {
 module.exports = {
     getPackage,
     getPackageById,
-    getPackageByDestiny,
-    getPackageByDate,
-    getPackageByPrice,
     createPackage,
     deletePackage,
     updatePackage,
