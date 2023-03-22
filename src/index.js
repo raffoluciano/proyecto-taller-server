@@ -24,10 +24,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 // routes
 app.use("/user",users);
-app.use("/destiny",Destinations);
+//app.use("/destiny",Destinations);
 app.use("/role",roles);
 app.use("/excursion",excursion);
-app.use("/hotel",hotel);
+//app.use("/hotel",hotel);
 app.use("/country",country);
 app.use("/type",type_package);
 app.use('/package', package);
