@@ -4,7 +4,7 @@ const router = Router()
 
 router.get('/package', getPackage);
 router.get('/:id', getPackageById);
-//router.get('/destiny/:nombre', getPackageByDestiny);
+router.get('/destiny/:destino', getPackageByDestiny);
 //router.get('/date/:comienzo', getPackageByDate);
 //router.get('/price/:precio', getPackageByPrice);
 router.post('/package', createPackage);

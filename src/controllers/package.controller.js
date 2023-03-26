@@ -29,6 +29,23 @@ const getPackageById = async(req, res) => {
     const response = await pool.query('select * from paquete where id = $1', [id])
     res.json(response.rows);
 };
+const getPackageByDestiny = async(req, res) => {
+    const parametros = req.params;
+    const cant_query_params = Array.from(Object.keys(parametros)).length
+    if (cant_query_params === 0) {
+        const response = await pool.query('select * from paquete')
+        res.status(200).json(response.rows);
+    }
+    else {
+        let base = 'select * from paquete where '
+        const listaClaveValor = Object.entries(parametros).map(([clave, valor]) => `${clave}='${valor}'`)
+        const filtro = listaClaveValor.join(" AND ");
+        const consulta = base + filtro;
+        const response = await pool.query(consulta);
+        res.status(200).json(response.rows);
+    }
+
+};
 /*
 const getPackageByDestiny = async(req, res) => {
     const parametros = req.query;
@@ -169,6 +186,7 @@ const createPlacexexcursion = async(req, res) => {
 module.exports = {
     getPackage,
     getPackageById,
+    getPackageByDestiny,
     createPackage,
     deletePackage,
     updatePackage,
