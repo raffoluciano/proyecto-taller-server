@@ -2,8 +2,8 @@ const config = {
     db: {
         host:'localhost',
         user:'postgres',
-        password:'dpb2lsda',
-        database:'TallerMar23',
+        password:'41629522',
+        database:'TP-FINAL',
         port:'5432'
     }
 }

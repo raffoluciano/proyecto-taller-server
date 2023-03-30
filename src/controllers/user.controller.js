@@ -17,17 +17,15 @@ const getUsersById = async(req,res)=> {
 
 const createUser = async(req, res)=>{
     console.log(req.body);
-    const activo = true;
-    const{nombre,dni,email,nombre_usuario,contrasenia,rol} = req.body;
-    console.log('verrrrr',contrasenia)
-    const response = await pool.query('INSERT INTO usuario (nombre,dni,email,nombre_usuario,contraseña,activo) VALUES($1,$2,$3,$4,$5,$6)',[nombre,dni,email,nombre_usuario,contrasenia,activo])
-            .then(await pool.query('INSERT INTO rol (nombre,dni_usuario,activo) VALUES($1,$2,$3)',[rol,dni,activo]));
+    const{nombre,dni,email,contraseña} = req.body;
+    console.log('verrrrr',contraseña)
+    const response = await pool.query('INSERT INTO usuario (nombre,dni,email,contrasena) VALUES($1,$2,$3,$4)',[nombre,dni,email,contraseña])
   
     console.log(response);
     res.json({
         message: 'User Added Succesfully' ,
         body:{
-        user:{nombre,dni,email,nombre_usuario,contrasenia,activo}
+        user:{nombre,dni,email,contraseña}
     } 
   })
 };
