@@ -4,6 +4,8 @@ const { Pool } = require('pg')
 const config = require('../../config')
 const pool = new Pool(config.db)
 
+
+
 const getPackage = async(req, res) => {
     const parametros = req.query;
     console.log(req.query);
@@ -182,6 +184,10 @@ const createPlacexexcursion = async(req, res) => {
 })};
 
 
+const saveImagePackage = async (req, res) => {
+    res.status(200).json({ message: 'Imagen subida correctamente' });
+}
+
 
 module.exports = {
     getPackage,
@@ -194,5 +200,6 @@ module.exports = {
     createDestinyxpackage,
     createExcursionxpackage,
     createHotelxpackage,
-    createPlacexexcursion
+    createPlacexexcursion,
+    saveImagePackage 
 };

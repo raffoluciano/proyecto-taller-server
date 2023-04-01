@@ -1,11 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const upload = require('../src/upload');
 
 app.use(cors());
 
 const users = require('./routes/user');
-const Destinations = require('./routes/destiny');
+//const Destinations = require('./routes/destiny');
 const roles = require('./routes/role');
 const excursion = require('./routes/excursion');
 const hotel = require('./routes/hotel');
@@ -22,9 +23,11 @@ const type_transport = require('./routes/type_trasnport')
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(upload);
+
 // routes
 app.use("/user",users);
-app.use("/destiny",Destinations);
+//app.use("/destiny",Destinations);
 app.use("/role",roles);
 app.use("/excursion",excursion);
 //app.use("/hotel",hotel);

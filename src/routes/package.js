@@ -1,6 +1,7 @@
 const { Router } = require('express');
-const { getPackage, getPackageById, createPackage, deletePackage, updatePackage,createTransportxpackage,createDestinyxpackage, createExcursionxpackage,createHotelxpackage,createPlacexexcursion, getPackageByDestiny, getPackageByDate, getPackageByPrice } = require('../controllers/package.controller');
+const { getPackage, getPackageById, createPackage, deletePackage, updatePackage,createTransportxpackage,createDestinyxpackage, createExcursionxpackage,createHotelxpackage,createPlacexexcursion, getPackageByDestiny, getPackageByDate, getPackageByPrice, saveImagePackage} = require('../controllers/package.controller');
 const router = Router()
+// const { upload } = require('../upload.js');
 
 router.get('/package', getPackage);
 router.get('/:id', getPackageById);
@@ -15,4 +16,5 @@ router.post('/destinyxpackage', createDestinyxpackage);
 router.post('/excursionxpackage', createExcursionxpackage);
 router.post('/hotelxpackage', createHotelxpackage);
 router.post('/placexexcursion', createPlacexexcursion);
+router.post('/packageImage', saveImagePackage );
 module.exports = router;
