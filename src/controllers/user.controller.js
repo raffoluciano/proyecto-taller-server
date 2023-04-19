@@ -69,7 +69,7 @@ const loginUser = async(req, res) =>{
     } else {
       // Si el usuario no existe o la contraseña es incorrecta
       // Envía una respuesta con un mensaje de error
-      res.status(401).json({ mensaje: 'Credenciales inválidas' });
+      res.status(401).json({ mensaje: 'Datos incorrectos' });
     }
   } catch (error) {
     // Si ocurre un error en la consulta a la base de datos
