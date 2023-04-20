@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const upload = require('../src/upload');
+const path = require('path');
 
 app.use(cors());
 
@@ -40,6 +41,7 @@ app.use('/promotion', promotion);
 app.use('/shopping_cart', shopping_cart)
 app.use('/line', line)
 app.use('/type_transport', type_transport)
+app.use('/images', express.static(path.join(__dirname, 'public/uploads')))
 
 app.listen(4000);
 console.log('Server on port 4000');
