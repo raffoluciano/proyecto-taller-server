@@ -81,9 +81,9 @@ const getPackageByPrice = async(req, res) => {
 
 const createPackage = async(req, res) => {
     console.log(req.body);
-    const {nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles} = req.body;
-    const response = await pool.query('insert into paquete (nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles, activo) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING id',
-    [nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles])
+    const {nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles,imagen1, imagen2, imagen3} = req.body;
+    const response = await pool.query('insert into paquete (nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles, imagen1, imagen2, imagen3) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING id',
+    [nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles,imagen1, imagen2, imagen3])
 
     const { id } = response.rows[0]
     console.log('verrr',response.rows[0]);
