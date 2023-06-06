@@ -31,6 +31,7 @@ const getPackageById = async(req, res) => {
     const response = await pool.query('select * from paquete where id = $1', [id])
     res.json(response.rows);
 };
+
 const getPackageByDestiny = async(req, res) => {
     const parametros = req.params;
     const cant_query_params = Array.from(Object.keys(parametros)).length
@@ -50,34 +51,24 @@ const getPackageByDestiny = async(req, res) => {
 };
 /*
 const getPackageByDestiny = async(req, res) => {
-    const parametros = req.query;
-    console.log(req.query);
-    const cant_query_params = Array.from(Object.keys(parametros)).length
-    if (cant_query_params === 0) {
-        const response = await pool.query('select * from paquete')
-        res.status(200).json(response.rows);
-    }
-    else {
-        let base = 'select * from paquete where '
-        const listaClaveValor = Object.entries(parametros).map(([clave, valor]) => `${clave}=${valor}`)
-        const filtro = listaClaveValor.join(" AND ")
-        const consulta = base + filtro
-        res.json([]);
-    }
-
-};
+    const destiny = req.params.destino
+    const response = await pool.query('select * from paquete where destino=$1', [destiny])
+    res.json(response.rows)
+};*/
 
 const getPackageByDate = async(req, res) => {
+    //busca viajes desde determinada fecha en adelante
     const date = req.params.comienzo
     const response = await pool.query('select * from paquete where comienzo>=$1',[date])
     res.json(response.rows)
 };
 
 const getPackageByPrice = async(req, res) => {
+    // busca precios hasta determinado monto
     const price = req.params.precio
     const response = await pool.query('select * from paquete where precio<=$1', [price])
     res.json(response.rows)    
-}*/
+}
 
 const createPackage = async(req, res) => {
     console.log(req.body);
@@ -193,6 +184,8 @@ module.exports = {
     getPackage,
     getPackageById,
     getPackageByDestiny,
+    getPackageByDate,
+    getPackageByPrice,
     createPackage,
     deletePackage,
     updatePackage,
