@@ -31,6 +31,13 @@ const createUser = async(req, res)=>{
   })
 };
 
+const getRoleUserByEmail = async(req, res) => {
+  const { email } = req.params;
+  console.log('email',email)
+  const response = await pool.query('Select r.nombre from usuario as u, rol as r where u.email = $1 and u.dni = r.dni_usuario', [email]);
+    res.json(response.rows)
+}
+
 const deleteUser =async (req,res) =>{
     const id= req.params.id; 
     console.log('id',id)
@@ -85,5 +92,6 @@ const loginUser = async(req, res) =>{
         createUser,
         deleteUser,
         updateUser,
-        loginUser
+        loginUser,
+        getRoleUserByEmail
       }
