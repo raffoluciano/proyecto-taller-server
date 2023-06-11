@@ -11,7 +11,7 @@ const users = require('./routes/user');
 const roles = require('./routes/role');
 const excursion = require('./routes/excursion');
 const hotel = require('./routes/hotel');
-const country = require('./routes/country');
+//const country = require('./routes/country');
 const type_package = require('./routes/type_package');
 const package = require('./routes/package')
 const meanOfTransport = require('./routes/meanOfTransport')
@@ -32,7 +32,7 @@ app.use("/user",users);
 app.use("/role",roles);
 app.use("/excursion",excursion);
 //app.use("/hotel",hotel);
-app.use("/country",country);
+//app.use("/country",country);
 app.use("/type",type_package);
 app.use('/package', package);
 app.use('/meanOfTransport', meanOfTransport);
