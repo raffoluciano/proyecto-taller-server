@@ -106,6 +106,15 @@ const deletePackage = async(req, res) => {
     console.log();
     res.json(response);
   };
+
+  const updatePackageCupos = async(req, res) => {
+    const id = req.params.id;
+    const { cupos } = req.body;
+    console.log('id', id);
+    const response = await pool.query('call decrementar_cupos($1, $2)', [id, cupos]);
+    res.json(response);
+  };
+
   
 //se llama en el cliente cuando se crea el paquete y se le asigna el transporte 
 const createTransportxpackage = async(req, res) => {
@@ -198,5 +207,6 @@ module.exports = {
     createExcursionxpackage,
     createHotelxpackage,
     createPlacexexcursion,
-    saveImagePackage 
+    saveImagePackage ,
+    updatePackageCupos
 };
