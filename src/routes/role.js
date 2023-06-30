@@ -1,4 +1,4 @@
-const {Router} = require('express');
+/*const {Router} = require('express');
 const router = Router();
 
 const {getRoles,getRoleById,updateRole}=require('../controllers/role.controller')
@@ -9,3 +9,4 @@ router.get('/roles', getRoles);
 router.get('/:id',getRoleById);
 router.put('/roles', updateRole);
 module.exports = router;
+*/

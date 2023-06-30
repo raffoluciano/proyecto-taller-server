@@ -1,4 +1,4 @@
-const {Router} = require('express');
+/*const {Router} = require('express');
 const router = Router();
 
 const {getHotel,getHotelByLocalidad, deleteHotel, createHotel, updateHotel}=require('../controllers/hotel.controller')
@@ -13,3 +13,4 @@ router.put('/hotel', updateHotel);
 
 
 module.exports = router;
+*/

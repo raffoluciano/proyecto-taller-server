@@ -1,3 +1,4 @@
+/*
 const {Pool} =require('pg');
 const config = require('../../config');
 
@@ -25,3 +26,4 @@ module.exports = {
     getType_paqById
 
 }
+*/

@@ -1,4 +1,4 @@
-const {Router} = require('express');
+/*const {Router} = require('express');
 const router = Router();
 
 const {getType_transport, getType_transportById,createType_transport,deleteType_transport}=require('../controllers/type_transport.controller')
@@ -13,3 +13,4 @@ module.exports = router;
 
 
 
+*/

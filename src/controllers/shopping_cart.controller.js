@@ -1,3 +1,4 @@
+/*
 const {Pool} =require('pg');
 const config = require('../../config');
 
@@ -45,3 +46,4 @@ module.exports = {
     deleteShopping_cart
     
 }
+*/

@@ -38,21 +38,22 @@ const getPackageByDestiny = async(req, res) => {
     res.status(200).json(response.rows);
   
 };
-
+/*
 const getPackageByDate = async(req, res) => {
     //busca viajes desde determinada fecha en adelante
     const date = req.params.comienzo
     const response = await pool.query('select * from paquete where comienzo>=$1',[date])
     res.json(response.rows)
 };
-
+*/
+/*
 const getPackageByPrice = async(req, res) => {
     // busca precios hasta determinado monto
     const price = req.params.precio
     const response = await pool.query('select * from paquete where precio<=$1', [price])
     res.json(response.rows)    
 }
-
+*/
 const createPackage = async(req, res) => {
     console.log(req.body);
     const {nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles,imagen1, imagen2, imagen3, destino, transporte,tipo} = req.body;
@@ -93,6 +94,7 @@ const deletePackage = async(req, res) => {
     res.json(response);
   };
 
+  /*
   
 //se llama en el cliente cuando se crea el paquete y se le asigna el transporte 
 const createTransportxpackage = async(req, res) => {
@@ -164,7 +166,7 @@ const createPlacexexcursion = async(req, res) => {
       package: {id_excursion,id_lugar}
   } 
 })};
-
+*/
 
 const saveImagePackage = async (req, res) => {
     res.status(200).json({ message: 'Imagen subida correctamente' });
@@ -175,16 +177,16 @@ module.exports = {
     getPackage,
     getPackageById,
     getPackageByDestiny,
-    getPackageByDate,
-    getPackageByPrice,
+    //getPackageByDate,
+    //getPackageByPrice,
     createPackage,
     deletePackage,
     updatePackage,
-    createTransportxpackage,
-    createDestinyxpackage,
-    createExcursionxpackage,
-    createHotelxpackage,
-    createPlacexexcursion,
+    //createTransportxpackage,
+    //createDestinyxpackage,
+    //createExcursionxpackage,
+    //createHotelxpackage,
+    //createPlacexexcursion,
     saveImagePackage ,
     updatePackageCupos
 };

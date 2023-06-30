@@ -1,4 +1,4 @@
-const {Router} = require('express');
+/*const {Router} = require('express');
 const router = Router();
 
 const {getDestinations,getDestinyById,createDestiny,deleteDestiny,updateDestiny}=require('../controllers/destiny.controller')
@@ -11,3 +11,4 @@ router.post('/destiny',createDestiny);
 router.delete('/destiny/:id', deleteDestiny);
 router.put('/destiny', updateDestiny);
 module.exports = router;
+*/

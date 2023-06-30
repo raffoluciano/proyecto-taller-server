@@ -1,4 +1,4 @@
-const { Router } = require('express');
+/*const { Router } = require('express');
 const { getLocation, getLocationById, createLocation, deleteLocation, updateLocation } = require('../controllers/location.controller');
 const router = Router()
 
@@ -9,3 +9,4 @@ router.delete('/location/:id', deleteLocation);
 router.put('/location', updateLocation)
 
 module.exports = router;
+*/

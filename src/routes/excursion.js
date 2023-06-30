@@ -1,4 +1,4 @@
-const {Router} = require('express');
+/*const {Router} = require('express');
 const router = Router();
 
 const {getExcursion,getExcursionById, createExcursion, deleteExcursion, updateExcursion}=require('../controllers/excursion.controller')
@@ -12,3 +12,4 @@ router.delete('/excursion/:id', deleteExcursion);
 router.put('/excursion/:id', updateExcursion);
 
 module.exports = router;
+*/
