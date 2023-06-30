@@ -33,20 +33,24 @@ const getPackageById = async(req, res) => {
 };
 
 const getPackageByDestiny = async(req, res) => {
-    const parametros = req.params;
-    const cant_query_params = Array.from(Object.keys(parametros)).length
-    if (cant_query_params === 0) {
-        const response = await pool.query('select * from paquete')
-        res.status(200).json(response.rows);
-    }
-    else {
-        let base = 'select * from paquete where '
-        const listaClaveValor = Object.entries(parametros).map(([clave, valor]) => `${clave}='${valor}'`)
-        const filtro = listaClaveValor.join(" AND ");
-        const consulta = base + filtro;
-        const response = await pool.query(consulta);
-        res.status(200).json(response.rows);
-    }
+    const destino = req.params.destino;
+    const response = await pool.query('select * from paquete where destino ~* $1', [destino])
+    res.status(200).json(response.rows);
+    // const parametros = req.params;
+    // console.log('par',parametros.destino)
+    // const cant_query_params = Array.from(Object.keys(parametros)).length
+    // if (cant_query_params === 0) {
+    //     const response = await pool.query('select * from paquete')
+    //     res.status(200).json(response.rows);
+    // }
+    // else {
+    //     let base = 'select * from paquete where '
+    //     const listaClaveValor = Object.entries(parametros).map(([clave, valor]) => `${clave}='${valor}'`)
+    //     const filtro = listaClaveValor.join(" AND ");
+    //     const consulta = base + filtro;
+    //     const response = await pool.query(consulta);
+    //     res.status(200).json(response.rows);
+    // }
 
 };
 /*
@@ -72,9 +76,9 @@ const getPackageByPrice = async(req, res) => {
 
 const createPackage = async(req, res) => {
     console.log(req.body);
-    const {nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles,imagen1, imagen2, imagen3} = req.body;
-    const response = await pool.query('insert into paquete (nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles, imagen1, imagen2, imagen3) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING id',
-    [nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles,imagen1, imagen2, imagen3])
+    const {nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles,imagen1, imagen2, imagen3, destino, transporte,tipo} = req.body;
+    const response = await pool.query('insert into paquete (nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles, imagen1, imagen2, imagen3, destino, transporte,tipo) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16) RETURNING id',
+    [nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles,imagen1, imagen2, imagen3, destino, transporte,tipo])
 
     const { id } = response.rows[0]
     console.log('verrr',response.rows[0]);
@@ -82,7 +86,7 @@ const createPackage = async(req, res) => {
     res.json({
       message: 'Package Added Succesfully' ,
       body:{
-      package: {id,nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles}
+      package: {id,nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles,imagen1, imagen2, imagen3, destino, transporte,tipo}
   } 
 })};
 
