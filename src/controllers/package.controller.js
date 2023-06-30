@@ -36,29 +36,8 @@ const getPackageByDestiny = async(req, res) => {
     const destino = req.params.destino;
     const response = await pool.query('select * from paquete where destino ~* $1', [destino])
     res.status(200).json(response.rows);
-    // const parametros = req.params;
-    // console.log('par',parametros.destino)
-    // const cant_query_params = Array.from(Object.keys(parametros)).length
-    // if (cant_query_params === 0) {
-    //     const response = await pool.query('select * from paquete')
-    //     res.status(200).json(response.rows);
-    // }
-    // else {
-    //     let base = 'select * from paquete where '
-    //     const listaClaveValor = Object.entries(parametros).map(([clave, valor]) => `${clave}='${valor}'`)
-    //     const filtro = listaClaveValor.join(" AND ");
-    //     const consulta = base + filtro;
-    //     const response = await pool.query(consulta);
-    //     res.status(200).json(response.rows);
-    // }
-
+  
 };
-/*
-const getPackageByDestiny = async(req, res) => {
-    const destiny = req.params.destino
-    const response = await pool.query('select * from paquete where destino=$1', [destiny])
-    res.json(response.rows)
-};*/
 
 const getPackageByDate = async(req, res) => {
     //busca viajes desde determinada fecha en adelante
@@ -100,13 +79,12 @@ const deletePackage = async(req, res) => {
   }; 
   const updatePackage = async(req, res) => {
     const id = req.params.id;
-    const { nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles } = req.body;
+    const { nombre, precio, comienzo, fin, salida, destino, descripcion, cupos, duracion, excursiones, hoteles, transporte } = req.body;
     console.log('id', id);
-    const response = await pool.query('UPDATE paquete SET nombre = $1, precio = $2, comienzo = $3, fin = $4, salida = $5, descripcion = $6, cupos = $7, duracion = $8, excursiones = $9, hoteles = $10 WHERE id = $11', [nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, excursiones, hoteles, id]);
-    console.log();
+    const response = await pool.query('UPDATE paquete SET nombre = $1, precio = $2, comienzo = $3, fin = $4, salida = $5, destino = $6, descripcion = $7, cupos = $8, duracion = $9, excursiones = $10, hoteles = $11, transporte = $12 WHERE id = $13', [nombre, precio, comienzo, fin, salida, destino, descripcion, cupos, duracion, excursiones, hoteles, transporte, id]);
+  
     res.json(response);
   };
-
   const updatePackageCupos = async(req, res) => {
     const id = req.params.id;
     const { cupos } = req.body;
