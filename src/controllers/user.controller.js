@@ -59,10 +59,10 @@ const loginUser = async(req, res) =>{
 
 // Ruta para el inicio de sesión
   try {
-    // Obtén los datos del formulario de inicio de sesión del cuerpo de la solicitud
+    // datos del formulario de inicio de sesión
     const { email, password } = req.body;
 
-    // Verifica en la base de datos si el usuario existe y tiene una contraseña válida
+    // Verifica en la base de datos si el usuario existe 
     const query = `SELECT * FROM usuario WHERE email = $1 AND contrasena = $2`;
     const values = [email, password];
     const result = await pool.query(query, values);
@@ -79,8 +79,8 @@ const loginUser = async(req, res) =>{
       res.status(401).json({ mensaje: 'Datos incorrectos' });
     }
   } catch (error) {
-    // Si ocurre un error en la consulta a la base de datos
-    // Envía una respuesta con un mensaje de error
+    // Si hay error en la consulta a la bd
+    // manda una respuesta con un error
     console.log(error);
     res.status(500).json({ mensaje: 'Error en el servidor' });
   }

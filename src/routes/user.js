@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const {getUsers,createUser,getUsersById,deleteUser,updateUser,loginUser,getRoleUserByEmail}=require('../controllers/user.controller')
 
 router.use(bodyParser.json());
-//user routes
+
 router.get('/user', getUsers);
 router.get('/:id', getUsersById);
 router.post('/user',createUser);
@@ -14,6 +14,6 @@ router.delete('/user/:id', deleteUser);
 router.put('/user', updateUser);
 router.get('/role/:email',getRoleUserByEmail)
 
-//paquetes routes
+
 
 module.exports = router;
