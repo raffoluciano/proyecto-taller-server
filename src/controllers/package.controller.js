@@ -65,9 +65,9 @@ const deletePackage = async(req, res) => {
   }; 
   const updatePackage = async(req, res) => {
     const id = req.params.id;
-    const { nombre, precio, comienzo, fin, salida, destino, descripcion, cupos, duracion, excursiones, hoteles, transporte } = req.body;
+    const { nombre, precio, comienzo, fin, salida, destino, descripcion, cupos, duracion, excursiones, hoteles, transporte, tipo } = req.body;
     console.log('id', id);
-    const response = await pool.query('UPDATE paquete SET nombre = $1, precio = $2, comienzo = $3, fin = $4, salida = $5, destino = $6, descripcion = $7, cupos = $8, duracion = $9, excursiones = $10, hoteles = $11, transporte = $12 WHERE id = $13', [nombre, precio, comienzo, fin, salida, destino, descripcion, cupos, duracion, excursiones, hoteles, transporte, id]);
+    const response = await pool.query('UPDATE paquete SET nombre = $1, precio = $2, comienzo = $3, fin = $4, salida = $5, destino = $6, descripcion = $7, cupos = $8, duracion = $9, excursiones = $10, hoteles = $11, transporte = $12, tipo = $13 WHERE id = $14', [nombre, precio, comienzo, fin, salida, destino, descripcion, cupos, duracion, excursiones, hoteles, transporte, tipo, id]);
   
     res.json(response);
   };
